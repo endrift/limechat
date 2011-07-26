@@ -459,7 +459,7 @@ BOOL isUnicharDigit(unichar c)
 	
 	static OnigRegexp* regex = nil;
 	if (!regex) {
-		NSString* pattern = @"([a-zA-Z0-9]([-a-zA-Z0-9]*[a-zA-Z0-9])?\\.)([a-zA-Z0-9]([-a-zA-Z0-9]*[a-zA-Z0-9])?\\.)+[a-zA-Z]{2,6}|([a-f0-9]{0,4}:){7}[a-f0-9]{0,4}|([0-9]{1,3}\\.){3}[0-9]{1,3}";
+		NSString* pattern = @"([a-zA-Z0-9]([-a-zA-Z0-9]*[a-zA-Z0-9])?\\.)+(aero|arpa|asia|biz|cat|com|coop|edu|gov|info|int|local|jobs|mil|mobi|museum|name|net|org|pro|tel|travel|xxx|a[cdefgilmnoqrstuwxz]|b[abdefghijmnorstvwyz]|c[acdfghiklmnorsuvxyz]|d[dejkmoz]|e[cegrstu]|f[ijkmor]|g[abdefghilmnpqrstuwy]|h[kmnrtu]|i[delmnoqrst]|j[emop]|k[eghimnprwyz]|l[abcikrstuvy]|m[acdeghklmnopqrstuvwxyz]|n[acefgilopruz]|om|p[aefghklmnrstwy]|qa|r[eosuw]|s[abcdeghijklmnortuvyz]|t[cdfghjklmnoprtvwz]|u[agksyz]|v[aceginu]|w[fs]|y[et]|z[amw])|([a-f0-9]{0,4}:){7}[a-f0-9]{0,4}|([12]?[0-9]{1,2}\\.){3}[12]?[0-9]{1,2}";
 		regex = [[OnigRegexp compile:pattern] retain];
 	}
 	
