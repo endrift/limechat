@@ -76,19 +76,17 @@ NSString* tagEscape(NSString* s)
 
 static NSString* renderRange(NSString* body, attr_t attr, int start, int len)
 {
-	NSString* content = [body substringWithRange:NSMakeRange(start, len)];
+	NSString* link = [body substringWithRange:NSMakeRange(start, len)];
+    NSString* content = logEscape(link);
 	
 	if (attr & URL_ATTR) {
 		// URL
-		NSString* link = content;
-		content = logEscape(content);
 		return [NSString stringWithFormat:@"<a href=\"%@\" class=\"url\" oncontextmenu=\"on_url()\">%@</a>", link, content];
 	}
 	else if (attr & KEYWORD_ATTR) {
 		// keyword
-		content = logEscape(content);
 		if (attr & ADDRESS_ATTR) {
-			return [NSString stringWithFormat:@"<strong class=\"highlight\"><span class=\"address\" oncontextmenu=\"on_addr()\">%@</span></strong>", content];
+			return [NSString stringWithFormat:@"<strong class=\"highlight\"><a href=\http://%@\" class=\"address\" oncontextmenu=\"on_addr()\">%@</a></strong>", link, content];
 		}
 		else if (attr & CHANNEL_NAME_ATTR) {
 			return [NSString stringWithFormat:@"<strong class=\"highlight\"><span class=\"channel\" oncontextmenu=\"on_chname()\">%@</span></strong>", content];
@@ -99,17 +97,14 @@ static NSString* renderRange(NSString* body, attr_t attr, int start, int len)
 	}
 	else if (attr & ADDRESS_ATTR) {
 		// address
-		content = logEscape(content);
-		return [NSString stringWithFormat:@"<span class=\"address\" oncontextmenu=\"on_addr()\">%@</span>", content];
+		return [NSString stringWithFormat:@"<a href=\"http://%@\" class=\"address\" oncontextmenu=\"on_addr()\">%@</a>", link, content];
 	}
 	else if (attr & CHANNEL_NAME_ATTR) {
 		// channel name
-		content = logEscape(content);
 		return [NSString stringWithFormat:@"<span class=\"channel\" oncontextmenu=\"on_chname()\">%@</span>", content];
 	}
 	else if (attr & EFFECT_MASK) {
 		// effect
-		content = logEscape(content);
 		NSMutableString* s = [NSMutableString stringWithString:@"<span class=\"effect\" style=\""];
 		if (attr & BOLD_ATTR) [s appendString:@"font-weight:bold;"];
 		if (attr & UNDERLINE_ATTR) [s appendString:@"text-decoration:underline;"];
@@ -121,7 +116,7 @@ static NSString* renderRange(NSString* body, attr_t attr, int start, int len)
 		return s;
 	}
 	else {
-		return logEscape(content);
+		return content;
 	}
 }
 
