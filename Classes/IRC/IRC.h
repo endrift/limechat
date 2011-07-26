@@ -66,6 +66,7 @@
 #define MSG			@"MSG"
 #define OP			@"OP"
 #define RAW			@"RAW"
+#define SAY			@"SAY"
 #define REJOIN		@"REJOIN"
 #define QUERY		@"QUERY"
 #define QUOTE		@"QUOTE"

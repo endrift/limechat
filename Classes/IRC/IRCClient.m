@@ -1343,6 +1343,15 @@ static NSDateFormatter* dateTimeFormatter = nil;
 			targetChannelName = [s getToken];
 		}
 	}
+	else if ([cmd isEqualToString:SAY]) {
+		cmd = PRIVMSG;
+		if (selChannel) {
+			targetChannelName = selChannel.name;
+		}
+		else {
+			targetChannelName = [s getToken];
+		}
+	}
 	else if ([cmd isEqualToString:ME]) {
 		cmd = ACTION;
 		if (selChannel) {
