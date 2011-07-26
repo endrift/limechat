@@ -86,7 +86,7 @@ static NSString* renderRange(NSString* body, attr_t attr, int start, int len)
 	else if (attr & KEYWORD_ATTR) {
 		// keyword
 		if (attr & ADDRESS_ATTR) {
-			return [NSString stringWithFormat:@"<strong class=\"highlight\"><a href=\http://%@\" class=\"address\" oncontextmenu=\"on_addr()\">%@</a></strong>", link, content];
+			return [NSString stringWithFormat:@"<strong class=\"highlight\"><a href=\"http://%@\" class=\"address\" oncontextmenu=\"on_addr()\">%@</a></strong>", link, content];
 		}
 		else if (attr & CHANNEL_NAME_ATTR) {
 			return [NSString stringWithFormat:@"<strong class=\"highlight\"><span class=\"channel\" oncontextmenu=\"on_chname()\">%@</span></strong>", content];
