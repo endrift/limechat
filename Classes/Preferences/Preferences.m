@@ -80,6 +80,12 @@
 	return [ud boolForKey:@"Preferences.General.open_browser_in_background"];
 }
 
++ (BOOL)rotatingTabComplete
+{
+	NSUserDefaults* ud = [NSUserDefaults standardUserDefaults];
+	return [ud boolForKey:@"Preferences.General.rotating_tab_complete"];
+}
+
 + (BOOL)showInlineImages
 {
 	NSUserDefaults* ud = [NSUserDefaults standardUserDefaults];
@@ -817,6 +823,7 @@ static NSMutableArray* excludeWords;
 	[d setBool:NO forKey:@"Preferences.General.log_transcript"];
 	[d setInt:MAIN_WINDOW_LAYOUT_2_COLUMN forKey:@"Preferences.General.main_window_layout"];
 	[d setBool:YES forKey:@"Preferences.General.open_browser_in_background"];
+	[d setBool:YES forKey:@"Preferences.General.rotating_tab_complete"];
 	[d setBool:YES forKey:@"Preferences.General.show_inline_images"];
 	[d setBool:YES forKey:@"Preferences.General.show_join_leave"];
 	[d setBool:YES forKey:@"Preferences.General.use_growl"];

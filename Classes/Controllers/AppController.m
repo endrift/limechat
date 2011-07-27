@@ -687,43 +687,49 @@
 		}
 		++i;
 	}
-
-	// If we're trying to complete a half-entered string, and we can't find a
-	// choice with a common prefix, there is nothing more to be done.
-	// Otherwise, pick the user with the highest weight.
-	if (!currentChoices.count) {
-		if (current.length) return;
-		if (!commandMode && !twitterMode && firstUserWeight > 0) {
-			NSString* firstChoice = [choices objectAtIndex:0];
-			[currentChoices addObject:firstChoice];
-			[currentLowerChoices addObject:[firstChoice lowercaseString]];
-		}
-	}
-	
-	if (!currentChoices.count) return;
-	
-	// find the next choice
 	
 	NSString* t;
-	NSUInteger index = [currentLowerChoices indexOfObject:lowerCurrent];
-	if (index != NSNotFound) {
-		if (forward) {
-			++index;
-			if (currentChoices.count <= index) {
-				index = 0;
+	if ([Preferences rotatingTabComplete]) {
+		// If we're trying to complete a half-entered string, and we can't find a
+		// choice with a common prefix, there is nothing more to be done.
+		// Otherwise, pick the user with the highest weight.
+		if (!currentChoices.count) {
+			if (current.length) return;
+			if (!commandMode && !twitterMode && firstUserWeight > 0) {
+				NSString* firstChoice = [choices objectAtIndex:0];
+				[currentChoices addObject:firstChoice];
+				[currentLowerChoices addObject:[firstChoice lowercaseString]];
 			}
 		}
-		else {
-			if (index == 0) {
-				index = currentChoices.count - 1;
+		
+		if (!currentChoices.count) return;
+		
+		// find the next choice
+		NSUInteger index = [currentLowerChoices indexOfObject:lowerCurrent];
+		if (index != NSNotFound) {
+			if (forward) {
+				++index;
+				if (currentChoices.count <= index) {
+					index = 0;
+				}
 			}
 			else {
-				--index;
+				if (index == 0) {
+					index = currentChoices.count - 1;
+				}
+				else {
+					--index;
+				}
 			}
+			t = [currentChoices objectAtIndex:index];
 		}
-		t = [currentChoices objectAtIndex:index];
+		else {
+			t = [currentChoices objectAtIndex:0];
+		}
 	}
-	else {
+	else  {
+		if (currentChoices.count != 1) return;
+		
 		t = [currentChoices objectAtIndex:0];
 	}
 	
