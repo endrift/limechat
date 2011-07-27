@@ -652,8 +652,8 @@
 		NSMutableArray* users = [[channel.members mutableCopy] autorelease];
 		[users sortUsingSelector:@selector(compareUsingWeights:)];
 		
-		NSMutableArray* nicks = [NSMutableArray array];
-		NSMutableArray* lowerNicks = [NSMutableArray array];
+		NSMutableArray* names = [NSMutableArray array];
+		NSMutableArray* lowerNames = [NSMutableArray array];
 		
 		BOOL seenFirstUser = NO;
 		for (IRCUser* m in users) {
@@ -662,13 +662,18 @@
 					seenFirstUser = YES;
 					firstUserWeight = m.weight;
 				}
-				[nicks addObject:m.nick];
-				[lowerNicks addObject:m.canonicalNick];
+				[names addObject:m.nick];
+				[lowerNames addObject:m.canonicalNick];
 			}
 		}
+
+		for (IRCChannel* m in client.channels) {
+			[names addObject:m.name];
+			[lowerNames addObject:m.name];
+		}
 		
-		choices = nicks;
-		lowerChoices = lowerNicks;
+		choices = names;
+		lowerChoices = lowerNames;
 	}
 	
 	NSMutableArray* currentChoices = [NSMutableArray array];
@@ -728,7 +733,8 @@
 		t = [t stringByAppendingString:@" "];
 	}
 	else if (head) {
-		if (twitterMode) {
+		// TODO: use prefixes from ISUPPORT here
+		if (twitterMode || [t characterAtIndex:0] == '#') {
 			t = [t stringByAppendingString:@" "];
 		}
 		else {
