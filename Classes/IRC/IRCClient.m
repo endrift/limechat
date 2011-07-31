@@ -1656,7 +1656,7 @@ static NSDateFormatter* dateTimeFormatter = nil;
 {
 	[conn sendLine:str];
 	
-	LOG(@">>> %@", str);
+	//LOG(@">>> %@", str);
 }
 
 - (void)send:(NSString*)str, ...
@@ -3764,6 +3764,8 @@ static NSDateFormatter* dateTimeFormatter = nil;
 	}
 	
 	IRCMessage* m = [[[IRCMessage alloc] initWithLine:s] autorelease];
+	//LOG(@"<<< %@", s);
+
 	NSString* cmd = m.command;
 	
 	if (m.numericReply > 0) [self receiveNumericReply:m];
