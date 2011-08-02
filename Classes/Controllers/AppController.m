@@ -669,7 +669,7 @@
 
 		for (IRCChannel* m in client.channels) {
 			[names addObject:m.name];
-			[lowerNames addObject:m.name];
+			[lowerNames addObject:[m.name lowercaseString]];
 		}
 		
 		choices = names;
@@ -728,23 +728,50 @@
 		}
 	}
 	else  {
-		if (currentChoices.count != 1) return;
-		
-		t = [currentChoices objectAtIndex:0];
+		if (currentChoices.count == 0) return;
+
+		if (currentChoices.count == 1) {
+			t = [currentChoices objectAtIndex:0];
+		} else {
+			NSString* leader = [currentLowerChoices objectAtIndex:0];
+			NSMutableString* running = [[NSMutableString alloc] initWithCapacity:leader.length];
+			[running setString:lowerPre];
+			BOOL done = NO;
+
+			for (NSUInteger i = current.length; i < leader.length && !done; ++i) {
+				UniChar c = [leader characterAtIndex:i];
+				for (NSString* s in currentLowerChoices) {
+					if (s.length <= i || [s characterAtIndex:i] != c) {
+						done = YES;
+						break;
+					}
+				}
+
+				if (!done) {
+					[running appendString:[NSString stringWithCharacters:&c length:1]];
+					LOG(@"%@", running);
+				}
+			}
+
+			t = [running autorelease];
+
+			if (t.length == pre.length) return;
+		}
 	}
 	
 	// add suffix
-	
-	if (commandMode) {
-		t = [t stringByAppendingString:@" "];
-	}
-	else if (head) {
-		// TODO: use prefixes from ISUPPORT here
-		if (twitterMode || [t characterAtIndex:0] == '#') {
+	if ([Preferences rotatingTabComplete] || currentChoices.count == 1) {
+		if (commandMode) {
 			t = [t stringByAppendingString:@" "];
 		}
-		else {
-			t = [t stringByAppendingString:@": "];
+		else if (head) {
+			// TODO: use prefixes from ISUPPORT here
+			if (twitterMode || [t characterAtIndex:0] == '#') {
+				t = [t stringByAppendingString:@" "];
+			}
+			else {
+				t = [t stringByAppendingString:@": "];
+			}
 		}
 	}
 	
