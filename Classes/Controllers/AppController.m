@@ -773,6 +773,9 @@
 				t = [t stringByAppendingString:@": "];
 			}
 		}
+		else if (currentChoices.count == 1) {
+			t = [t stringByAppendingString:@" "];
+		}
 	}
 	
 	// set completed item to the input text field
