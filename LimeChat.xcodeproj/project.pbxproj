@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0017962B13EF93B300C96C19 /* SwipeEventHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 0017962A13EF93B300C96C19 /* SwipeEventHandler.m */; };
+		0017962C13EF93B300C96C19 /* SwipeEventHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 0017962A13EF93B300C96C19 /* SwipeEventHandler.m */; };
 		780844D2134CD34B003BB84C /* ImageDownloadManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 780844D1134CD34B003BB84C /* ImageDownloadManager.m */; };
 		780844D3134CD34B003BB84C /* ImageDownloadManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 780844D1134CD34B003BB84C /* ImageDownloadManager.m */; };
 		780844F6134CD45E003BB84C /* ImageSizeCheckClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 780844F5134CD45E003BB84C /* ImageSizeCheckClient.m */; };
@@ -358,6 +360,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		0017962913EF93B300C96C19 /* SwipeEventHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SwipeEventHandler.h; sourceTree = "<group>"; };
+		0017962A13EF93B300C96C19 /* SwipeEventHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SwipeEventHandler.m; sourceTree = "<group>"; };
 		1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
 		29B97324FDCFA39411CA2CEA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
 		29B97325FDCFA39411CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
@@ -1003,6 +1007,8 @@
 				78A8C13C11737F660044E7A1 /* InputHistory.m */,
 				78A8C13D11737F660044E7A1 /* KeyEventHandler.h */,
 				78A8C13E11737F660044E7A1 /* KeyEventHandler.m */,
+				0017962913EF93B300C96C19 /* SwipeEventHandler.h */,
+				0017962A13EF93B300C96C19 /* SwipeEventHandler.m */,
 				78A8C14111737F660044E7A1 /* TCPClient.h */,
 				78A8C14211737F660044E7A1 /* TCPClient.m */,
 				78A8C14311737F660044E7A1 /* TCPServer.h */,
@@ -1423,6 +1429,7 @@
 				782DA8F112DB5A3800C07861 /* IgnoreItemSheet.m in Sources */,
 				780844D3134CD34B003BB84C /* ImageDownloadManager.m in Sources */,
 				780844F7134CD45E003BB84C /* ImageSizeCheckClient.m in Sources */,
+				0017962C13EF93B300C96C19 /* SwipeEventHandler.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1559,6 +1566,7 @@
 				789ED4841193F9EB00CFC0B2 /* IgnoreItemSheet.m in Sources */,
 				780844D2134CD34B003BB84C /* ImageDownloadManager.m in Sources */,
 				780844F6134CD45E003BB84C /* ImageSizeCheckClient.m in Sources */,
+				0017962B13EF93B300C96C19 /* SwipeEventHandler.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -11,6 +11,7 @@
 	self = [super initWithContentRect:contentRect styleMask:windowStyle backing:bufferingType defer:deferCreation];
 	if (self) {
 		keyHandler = [KeyEventHandler new];
+		swipeHandler = [SwipeEventHandler new];
 	}
 	return self;
 }
@@ -18,6 +19,7 @@
 - (void)dealloc
 {
 	[keyHandler release];
+	[swipeHandler release];
 	[super dealloc];
 }
 
@@ -34,6 +36,21 @@
 - (void)registerKeyHandler:(SEL)selector character:(UniChar)c modifiers:(NSUInteger)mods
 {
 	[keyHandler registerSelector:selector character:c modifiers:mods];
+}
+
+- (void)setSwipeHandlerTarget:(id)target
+{
+	[swipeHandler setTarget:target];
+}
+
+- (void)registerSwipeHandler:(SEL)selector deltaX:(CGFloat)x deltaY:(CGFloat)y
+{
+	[swipeHandler registerSelector:selector deltaX:x deltaY:y];
+}
+
+- (void)swipeWithEvent:(NSEvent *)event
+{
+	[swipeHandler processSwipeEvent:event];
 }
 
 - (void)sendEvent:(NSEvent *)e

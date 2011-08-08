@@ -39,6 +39,7 @@
 - (void)loadWindowState;
 - (void)saveWindowState;
 - (void)registerKeyHandlers;
+- (void)registerSwipeHandlers;
 - (void)prelude;
 @end
 
@@ -198,6 +199,7 @@
 	[ImageDownloadManager instance].world = world;
 
 	[self registerKeyHandlers];
+	[self registerSwipeHandlers];
 }
 
 - (void)applicationDidFinishLaunching:(NSNotification *)note
@@ -1083,6 +1085,11 @@ typedef enum {
 	[window registerKeyHandler:sel character:c modifiers:mods];
 }
 
+- (void)handler:(SEL)sel deltaX:(CGFloat)x deltaY:(CGFloat)y
+{
+	[window registerSwipeHandler:sel deltaX:x deltaY:y];
+}
+
 - (void)inputHandler:(SEL)sel code:(int)keyCode mods:(NSUInteger)mods
 {
 	[fieldEditor registerKeyHandler:sel key:keyCode modifiers:mods];
@@ -1132,6 +1139,14 @@ typedef enum {
 	[self inputHandler:@selector(inputHistoryUp:) code:KEY_UP mods:NSAlternateKeyMask];
 	[self inputHandler:@selector(inputHistoryDown:) code:KEY_DOWN mods:0];
 	[self inputHandler:@selector(inputHistoryDown:) code:KEY_DOWN mods:NSAlternateKeyMask];
+}
+
+- (void)registerSwipeHandlers
+{
+	[window setSwipeHandlerTarget:self];
+	
+	[self handler:@selector(selectPreviousActiveChannel:) deltaX:kSwipeLeft deltaY:0.0];
+	[self handler:@selector(selectNextActiveChannel:) deltaX:kSwipeRight deltaY:0.0];
 }
 
 #pragma mark -

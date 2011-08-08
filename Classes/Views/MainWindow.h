@@ -3,15 +3,19 @@
 
 #import <Cocoa/Cocoa.h>
 #import "KeyEventHandler.h"
+#import "SwipeEventHandler.h"
 
 
 @interface MainWindow : NSWindow
 {
 	KeyEventHandler* keyHandler;
+	SwipeEventHandler* swipeHandler;
 }
 
 - (void)setKeyHandlerTarget:(id)target;
 - (void)registerKeyHandler:(SEL)selector key:(int)code modifiers:(NSUInteger)mods;
 - (void)registerKeyHandler:(SEL)selector character:(UniChar)c modifiers:(NSUInteger)mods;
+- (void)setSwipeHandlerTarget:(id)target;
+- (void)registerSwipeHandler:(SEL)selector deltaX:(CGFloat)x deltaY:(CGFloat)y;
 
 @end
