@@ -749,7 +749,6 @@
 
 				if (!done) {
 					[running appendString:[NSString stringWithCharacters:&c length:1]];
-					LOG(@"%@", running);
 				}
 			}
 
