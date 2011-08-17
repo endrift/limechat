@@ -1817,7 +1817,7 @@ static NSDateFormatter* dateTimeFormatter = nil;
 	}
 	
 	NSString* title = chname;
-	NSString* desc = [NSString stringWithFormat:@"<%@> %@", nick, text];
+	NSString* desc = [NSString stringWithFormat:@"<%@> %@", nick, [text stripEffects]];
 	NSString* context;
 	if (channel) {
 		context = [NSString stringWithFormat:@"%d %d", uid, channel.uid];
