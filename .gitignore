@@ -9,3 +9,4 @@ project.xcworkspace
 *~.nib
 *.tmproj
 *.tm_build_errors
+*~
