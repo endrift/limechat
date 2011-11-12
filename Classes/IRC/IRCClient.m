@@ -2465,7 +2465,7 @@ static NSDateFormatter* dateTimeFormatter;
             // talk
             IRCChannel* c = [self findChannel:nick];
             BOOL newTalk = NO;
-            if (!c && type != LINE_TYPE_NOTICE) {
+            if (!c && ![nick isEqualNoCase:@"NickServ"]) {
                 c = [world createTalk:nick client:self];
                 newTalk = YES;
             }
