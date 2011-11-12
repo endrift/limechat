@@ -12,6 +12,7 @@
 
 @implementation IRCMessage
 
+@synthesize receivedAt;
 @synthesize sender;
 @synthesize command;
 @synthesize numericReply;
@@ -55,6 +56,15 @@
     
     NSMutableString* s = [line mutableCopy];
     
+    if ([s hasPrefix:@"@"]) {
+        NSString* t = [s getToken];
+        t = [t substringFromIndex:1];
+        receivedAt = [t longLongValue];
+    }
+    else {
+        time(&receivedAt);
+    }
+
     if ([s hasPrefix:@":"]) {
         NSString* t = [s getToken];
         t = [t substringFromIndex:1];

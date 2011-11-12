@@ -394,6 +394,8 @@
             return @"DCC file send success";
         case GROWL_FILE_SEND_ERROR:
             return @"DCC file send failure";
+        default:
+            break;
     }
     
     return nil;
@@ -432,6 +434,8 @@
             return @"Preferences.Sound.file_send_success";
         case GROWL_FILE_SEND_ERROR:
             return @"Preferences.Sound.file_send_failure";
+        default:
+            break;
     }
     
     return nil;
@@ -470,6 +474,8 @@
             return @"eventFileSendSuccess";
         case GROWL_FILE_SEND_ERROR:
             return @"eventFileSendFailure";
+        default:
+            break;
     }
     
     return nil;
